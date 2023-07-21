@@ -1,9 +1,9 @@
-import express from 'express'
-import BtechMulter from '../middleware/forBtech.js'
-import uploadBtechFile from '../controllers/BtechFileUploadC.js'
+const express = require("express");
+const BtechMulter = require("../middleware/forBtech.js");
+const uploadBtechFile = require("../controllers/BtechFileUploadC.js");
 
-let BtechFileUploadR = express.Router()
+let BtechFileUploadR = express.Router();
 
-BtechFileUploadR.post('/btechUpload',BtechMulter,uploadBtechFile)
+BtechFileUploadR.post("/btechUpload", BtechMulter, uploadBtechFile);
 
-export default BtechFileUploadR;
+module.exports = BtechFileUploadR;

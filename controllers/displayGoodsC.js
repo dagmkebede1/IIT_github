@@ -1,25 +1,18 @@
-import connectionInfo from "../server.js"
-let getAllGoods = (req,res)=>{
+const { connectionInfo } = require("../config");
+let getAllGoods = (req, res) => {
+  //  console.log(req.user)
 
-//  console.log(req.user)
-
-
-
-    let allGoodsToSell = `SELECT * FROM market`
-    connectionInfo.query(allGoodsToSell,(err,data,field)=>{
-       if(err){
+  let allGoodsToSell = `SELECT * FROM market`;
+  connectionInfo.query(allGoodsToSell, (err, data, field) => {
+    if (err) {
       //   console.log(err)
-       }else{
-             res.send({
-                data:data
-
-             })
-       }
-    })
-}
-
-
-
+    } else {
+      res.send({
+        data: data,
+      });
+    }
+  });
+};
 
 // let deleteGoodsByUser = (req,res)=>{
 //    const  id = req.params.id
@@ -33,4 +26,5 @@ let getAllGoods = (req,res)=>{
 //          })
 // }
 
-export default getAllGoods;
+// export default getAllGoods;
+module.exports = getAllGoods;

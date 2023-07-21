@@ -1,6 +1,7 @@
-import bcrypt from "bcrypt";
-import connectionInfo from "../server.js";
-import jwt from "jsonwebtoken";
+const { connectionInfo } = require("../config");
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+
 let registerController = (req, res) => {
   const {
     user_first_name,
@@ -124,6 +125,7 @@ let registerController = (req, res) => {
                     ...verifiedInfo,
                     verified_user_email: trimed_user_email,
                   };
+                  
 
                   if (
                     !phoneNumberValidatorIndia.test(
@@ -156,7 +158,7 @@ let registerController = (req, res) => {
                         message: "click here to go to signup page",
                       });
                     } else {
-                      let salt = bcrypt.genSaltSync();
+                      let salt = bcrypt.genSaltSync(10);
                       let hash_password = bcrypt.hashSync(
                         trimed_user_password,
                         salt
@@ -223,4 +225,4 @@ let registerController = (req, res) => {
   }
 };
 
-export default registerController;
+module.exports = registerController;
